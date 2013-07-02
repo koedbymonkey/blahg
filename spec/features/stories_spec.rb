@@ -35,7 +35,8 @@ describe 'Stories' do
         click_button 'Create'
         should have_content('Story was not successfully created!')
 
-        fill_in_fields :story, title: 'Mah Sooper Blahg'
+        fill_in_fields :story, title: 'Mah Sooper Blahg',
+                               body: 'MOOOOOOO'
 
         click_button 'Create'
         should have_content('Story was successfully created!')
