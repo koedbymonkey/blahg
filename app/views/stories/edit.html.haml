@@ -1,6 +1,10 @@
 %h1 Editing story
 
-= render 'form'
+= form_for @story do |f|
+  = render 'form', f: f
+
+  .actions
+    = f.submit 'Update'
 
 = link_to 'Show', @story
 \|

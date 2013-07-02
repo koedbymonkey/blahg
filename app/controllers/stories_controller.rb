@@ -47,9 +47,10 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.save
-        format.html { redirect_to @story, notice: 'Story was successfully created.' }
+        format.html { redirect_to @story, flash: { success: 'Story was successfully created!' }}
         format.json { render json: @story, status: :created, location: @story }
       else
+        flash[:error] = 'Story was not successfully created!'
         format.html { render action: "new" }
         format.json { render json: @story.errors, status: :unprocessable_entity }
       end
@@ -63,7 +64,7 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.update_attributes(params[:story])
-        format.html { redirect_to @story, notice: 'Story was successfully updated.' }
+        format.html { redirect_to @story }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
