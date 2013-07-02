@@ -19,6 +19,18 @@ describe 'Stories' do
 
     end
 
+    context 'when allowed' do
+      
+      before do
+        login_as user
+      end
+      
+      it 'is linked from the navbar' do
+        should have_css("a[href='#{ new_story_path }']")
+      end
+      
+    end
+
   end
 
 end
