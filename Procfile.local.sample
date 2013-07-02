@@ -1,0 +1,2 @@
+unicorn: unicorn_rails
+postgres: postgres -D /usr/local/var/postgres

@@ -1,0 +1,29 @@
+@import 'bootstrap'
+@import 'bootstrap-responsive'
+
+body
+
+  padding-top: 20px
+
+  &[data-environment='test']
+    border-top: 8px solid #e70031
+
+  &[data-environment='development']
+    border-top: 8px solid #2153e7
+
+  &[data-environment='staging']
+    border-top: 8px solid #ffd818
+
+  &[data-environment='production']
+    border-top: none
+
+img.fork-me
+  border:   0
+  position: absolute
+  right:    0
+  top:      0
+
+form
+
+  input[type='checkbox'] + label, input[type='radio'] + label
+    :display inline
