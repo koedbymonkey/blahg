@@ -42,7 +42,6 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'launchy'
-  gem 'mysql2'              # for ci against mysql
   gem 'poltergeist'
   gem 'simplecov',          require: false
   gem 'syntax'

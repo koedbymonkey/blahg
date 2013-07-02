@@ -14,7 +14,7 @@ if defined?(Bundler)
   Bundler.require(*Rails.groups(assets: %w[ development test ]))
 end
 
-module DevFuBase
+module Blahg
   class Application < Rails::Application
     config.active_record.whitelist_attributes          = true
     config.active_support.escape_html_entities_in_json = true

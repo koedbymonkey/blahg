@@ -6,5 +6,5 @@ RailsAdmin.config do |config|
   config.authorize_with       { redirect_to '/' unless warden.user.try(:admin?) }
   config.current_user_method  { current_user }
 
-  config.main_app_name = ['Dev Fu! Base', 'Admin']
+  config.main_app_name = ['Blahg', 'Admin']
 end
