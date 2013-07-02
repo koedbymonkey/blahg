@@ -8,4 +8,6 @@ class User < ActiveRecord::Base
 
   attr_accessible :admin, as: [:admin]
 
+  has_many :stories, foreign_key: 'author_id', :inverse_of => :author
+
 end
