@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130309235240) do
+ActiveRecord::Schema.define(:version => 20130702193932) do
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(:version => 20130309235240) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
+  create_table "stories", :force => true do |t|
+    t.integer  "author_id"
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "stories", ["author_id"], :name => "index_stories_on_author_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false
