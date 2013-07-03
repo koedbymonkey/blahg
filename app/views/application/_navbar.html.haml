@@ -9,12 +9,6 @@
             %span.icon-bar
         = link_to 'Blahg', root_path, class: 'brand'
 
-        %ul.nav
-          %li.divider-vertical
-            - if user_signed_in?
-              %li= link_to 'write a story', [:new, :story]
-
-
         %ul.nav.pull-right
           %li.divider-vertical
             - if user_signed_in?
@@ -29,8 +23,12 @@
             - else
               %li= link_to 'sign in', new_user_session_path
 
-          .nav-collapse
-            %ul.nav
-            - if user_signed_in? and current_user.admin?
-              %ul.nav.pull-right
-                %li= link_to 'admin', rails_admin.dashboard_path
+        .nav-collapse
+          %ul.nav
+            %li.divider-vertical
+            - if user_signed_in?
+              %li= link_to 'write a story', [:new, :story]
+
+          - if user_signed_in? and current_user.admin?
+            %ul.nav.pull-right
+              %li= link_to 'admin', rails_admin.dashboard_path
