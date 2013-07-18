@@ -260,7 +260,7 @@ DEPENDENCIES
   pry-debugger
   pry-doc
   pry-rails
-  rails (~> 3.2.12)
+  rails (= 3.2.12)
   rails_admin
   redcarpet
   rspec-rails
