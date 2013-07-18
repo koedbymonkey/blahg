@@ -7,4 +7,6 @@ coverage*
 database.yml
 log/*
 Procfile.local
+Procfile.dev
+
 tmp/*
