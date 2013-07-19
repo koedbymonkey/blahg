@@ -31,6 +31,7 @@ group :development do
   gem 'foreman'
   gem 'pry-debugger'
   gem 'yard'
+  gem 'mailcatcher'
 end
 
 group :development, :test do
