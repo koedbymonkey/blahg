@@ -100,6 +100,45 @@ describe 'Admin' do
 
     end
 
+    describe 'editing' do
+
+      let(:path) { rails_admin.edit_path :user, user }
+
+      describe 'permissions' do
+
+        it { should_not allow_access.to(:guest) }
+        it { should_not allow_access.to(:user)  }
+        it { should     allow_access.to(:admin) }
+
+      end
+
+      context 'when allowed' do
+
+        before do
+          user
+          login_as admin
+          visit path
+        end
+
+        it 'can change the password' do
+          # invalid data
+          fill_in_fields :user, password: 'new-password'
+
+          click_button 'Save'
+          should have_content('User failed to be updated')
+
+          # valid data
+          fill_in_fields :user, password:              'new-password',
+                                password_confirmation: 'new-password'
+
+          click_button 'Save'
+          should have_content('User successfully updated')
+        end
+
+      end
+
+    end
+
   end
 
   describe 'navbar' do
