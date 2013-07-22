@@ -270,6 +270,7 @@ GEM
       rack (>= 1.0.0)
     thor (0.18.1)
     tilt (1.4.1)
+    timecop (0.6.2.2)
     treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
@@ -329,6 +330,7 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   simplecov
   syntax
+  timecop
   uglifier (>= 1.0.3)
   unicorn
   validation_matcher

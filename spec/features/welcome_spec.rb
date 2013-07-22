@@ -24,7 +24,10 @@ describe 'Welcome' do
       let(:stories) { Story.all }
 
       before do
-        FactoryGirl.create_list :story, 3
+        Timecop.travel(1.day.from_now)  { @first  = FactoryGirl.create :story, title: 'First' }
+        Timecop.travel(2.days.from_now) { @second = FactoryGirl.create :story, title: 'Second' }
+        Timecop.travel(3.days.from_now) { @third  = FactoryGirl.create :story, title: 'Third' }
+
         visit path
       end
 
@@ -48,6 +51,10 @@ describe 'Welcome' do
         stories.map do |story|
           within("##{ dom_id story }") { should have_css("a[href='#{ story_path story }']", text: story.title) }
         end
+      end
+
+      it 'sorts stories reverse chronologically' do
+        body.should match /Third.*Second.*First/m
       end
 
     end

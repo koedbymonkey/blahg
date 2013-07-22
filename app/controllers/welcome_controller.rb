@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
 
   def index
-    @stories = Story.all
+    @stories = Story.order 'created_at DESC'
   end
 
 end

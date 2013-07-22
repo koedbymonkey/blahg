@@ -55,5 +55,6 @@ group :test do
   gem 'poltergeist'
   gem 'simplecov',          require: false
   gem 'syntax'
+  gem 'timecop'
   gem 'validation_matcher'
 end
