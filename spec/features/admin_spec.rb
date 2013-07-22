@@ -34,6 +34,33 @@ describe 'Admin' do
 
   describe 'users' do
 
+    describe 'listing' do
+
+      let(:path) { rails_admin.index_path :user }
+
+      describe 'permissions' do
+
+        it { should_not allow_access.to(:guest) }
+        it { should_not allow_access.to(:user)  }
+        it { should     allow_access.to(:admin) }
+
+      end
+
+      context 'when allowed' do
+
+        before do
+          user
+          login_as admin
+          visit path
+        end
+
+        it { should have_css("a[href='#{ rails_admin.show_path :user, user }']")}
+        it { should have_css("a[href='#{ rails_admin.edit_path :user, user }']")}
+
+      end
+
+    end
+
     describe 'creating' do
 
       let(:path) { rails_admin.new_path :user }
