@@ -1,5 +1,9 @@
 FactoryGirl.define do
 
+  factory :role do
+    sequence(:name) { |n| "Role #{ n }"}
+  end
+
   factory :story do
     author
     body   'The best post evah!'
