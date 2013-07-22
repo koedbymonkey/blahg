@@ -32,6 +32,10 @@ describe 'Welcome' do
         stories.map { |s| should have_css("##{ dom_id s }") }
       end
 
+      it 'includes the title of each story' do
+        stories.map { |s| within("##{ dom_id s }") { should have_content(s.title) }}
+      end
+
     end
 
   end
