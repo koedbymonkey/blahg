@@ -56,6 +56,7 @@ describe 'Admin' do
 
         it { should have_css("a[href='#{ rails_admin.show_path :user, user }']")}
         it { should have_css("a[href='#{ rails_admin.edit_path :user, user }']")}
+        it { should have_css("a[href='#{ rails_admin.delete_path :user, user }']")}
 
       end
 
@@ -137,6 +138,24 @@ describe 'Admin' do
           should have_content('User successfully updated')
         end
 
+      end
+
+    end
+
+    describe 'deleting' do
+
+      before do
+        user
+        login_as admin
+        visit rails_admin.index_path(:user)
+      end
+
+      it 'removes the user with confirmation' do
+        find("a[href='#{ rails_admin.delete_path :user, user }']").click
+        should have_content('Are you sure you want to delete this user')
+
+        click_button "Yes, I'm sure"
+        should have_content('User successfully deleted')
       end
 
     end
