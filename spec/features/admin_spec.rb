@@ -7,13 +7,28 @@ describe 'Admin' do
   let(:admin) { FactoryGirl.create :admin }
   let(:user)  { FactoryGirl.create :user }
 
-  describe 'permissions' do
+  describe 'dashboard' do
 
     let(:path) { rails_admin.dashboard_path }
 
-    it { should_not allow_access.to(:guest) }
-    it { should_not allow_access.to(:user)  }
-    it { should     allow_access.to(:admin) }
+    describe 'permissions' do
+
+      it { should_not allow_access.to(:guest) }
+      it { should_not allow_access.to(:user)  }
+      it { should     allow_access.to(:admin) }
+
+    end
+
+    context 'when allowed' do
+
+      before do
+        login_as admin
+        visit path
+      end
+
+      it { should have_css("a[href='#{ rails_admin.new_path :user }']")}
+
+    end
 
   end
 
