@@ -8,7 +8,8 @@ FactoryGirl.define do
   end
 
   factory :unconfirmed_user, class: User do
-    sequence(:email) { |n| "user#{ n }@testing.com" }
+    sequence(:email)    { |n| "user#{ n }@testing.com" }
+    sequence(:username) { |n| "User #{ n }" }
 
     password              'password'
     password_confirmation 'password'

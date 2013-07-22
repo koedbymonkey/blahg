@@ -4,4 +4,7 @@
 
 %ul.stories
   - for story in @stories
-    %li{ id: dom_id(story) }= story.title
+    %li{ id: dom_id(story) }
+      %i= story.title
+      by
+      = story.author.username

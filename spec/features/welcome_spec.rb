@@ -36,6 +36,10 @@ describe 'Welcome' do
         stories.map { |s| within("##{ dom_id s }") { should have_content(s.title) }}
       end
 
+      it 'includes the author name for each story' do
+        stories.map { |s| within("##{ dom_id s }") { should have_content(s.author.username) }}
+      end
+
     end
 
   end

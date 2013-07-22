@@ -18,7 +18,8 @@ describe 'Users' do
       # valid data
       fill_in_fields 'user', email:                 'user@testing.com',
                              password:              'password',
-                             password_confirmation: 'password'
+                             password_confirmation: 'password',
+                             username:              'Bukah Nugget'
 
       click_button 'Sign up'
 
