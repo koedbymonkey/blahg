@@ -44,6 +44,12 @@ describe 'Welcome' do
         stories.map { |s| within("##{ dom_id s }") { should have_content(s.author.created_at.strftime '%Y-%m-%d') }}
       end
 
+      it 'links to each story' do
+        stories.map do |story|
+          within("##{ dom_id story }") { should have_css("a[href='#{ story_path story }']", text: story.title) }
+        end
+      end
+
     end
 
   end

@@ -5,7 +5,7 @@
 %ul.stories
   - for story in @stories
     %li{ id: dom_id(story) }
-      %i= story.title
+      %i= link_to story.title, story_path(story)
       by
       = story.author.username
       on
