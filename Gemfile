@@ -28,10 +28,11 @@ group :production do
 end
 
 group :development do
+  gem 'better_errors'
   gem 'foreman'
+  gem 'mailcatcher'
   gem 'pry-debugger'
   gem 'yard'
-  gem 'mailcatcher'
 
   # guard
   gem 'guard'
