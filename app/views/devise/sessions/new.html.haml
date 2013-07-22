@@ -1,0 +1,28 @@
+.well.offset2.span8
+
+  .row-fluid
+    %h2 Sign in
+
+  .row-fluid
+    = form_for resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal' } do |f|
+
+      .control-group
+        = f.label :email, class: 'control-label'
+        .controls
+          = f.email_field :email, autofocus: true, class: 'span6'
+
+      .control-group
+        = f.label :password, class: 'control-label'
+        .controls
+          = f.password_field :password, class: 'span6'
+
+      - if devise_mapping.rememberable?
+        .control-group
+          .controls
+            = f.label :remember_me, class: 'checkbox' do
+              = f.check_box :remember_me
+              remember me
+
+      .controls
+        %p= f.submit 'Sign in', class: 'btn btn-primary'
+        %p= render 'devise/shared/links'

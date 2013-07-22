@@ -26,9 +26,6 @@
         .controls
           = f.password_field :password_confirmation, class: 'span6'
 
-      %f.controls
-        = f.submit 'Sign up', class: 'btn btn-primary'
-
-      .control-group
-        .controls
-          = render 'devise/shared/links'
+      .controls
+        %p= f.submit 'Sign up', class: 'btn btn-primary'
+        %p= render 'devise/shared/links'
