@@ -1,5 +1,10 @@
 FactoryGirl.define do
 
+  factory :authorization do
+    role
+    user
+  end
+
   factory :role do
     sequence(:name) { |n| "Role #{ n }"}
   end
