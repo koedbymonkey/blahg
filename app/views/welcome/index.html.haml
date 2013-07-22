@@ -1,1 +1,12 @@
 %h1 Blahg
+
+%h2 Stories
+
+%ul.stories
+  - for story in @stories
+    %li{ id: dom_id(story) }
+      %i= link_to story.title, story_path(story)
+      by
+      = story.author.username
+      on
+      = story.created_at.strftime '%Y-%m-%d'

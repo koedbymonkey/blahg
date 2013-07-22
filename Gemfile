@@ -28,10 +28,11 @@ group :production do
 end
 
 group :development do
+  gem 'better_errors'
   gem 'foreman'
+  gem 'mailcatcher'
   gem 'pry-debugger'
   gem 'yard'
-  gem 'mailcatcher'
 
   # guard
   gem 'guard'
@@ -56,5 +57,6 @@ group :test do
   gem 'simplecov',          require: false
   gem 'spork'
   gem 'syntax'
+  gem 'timecop'
   gem 'validation_matcher'
 end

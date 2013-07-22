@@ -47,4 +47,19 @@ describe 'Stories' do
 
   end
 
+  describe 'reading' do
+
+    let(:story) { FactoryGirl.create :story }
+    let(:path)  { story_path story }
+
+    describe 'permissions' do
+
+      it { should allow_access.to(:guest) }
+      it { should allow_access.to(:user)  }
+      it { should allow_access.to(:admin) }
+
+    end
+
+  end
+
 end
