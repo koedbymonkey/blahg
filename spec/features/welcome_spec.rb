@@ -40,6 +40,10 @@ describe 'Welcome' do
         stories.map { |s| within("##{ dom_id s }") { should have_content(s.author.username) }}
       end
 
+      it 'includes the publication date for each story' do
+        stories.map { |s| within("##{ dom_id s }") { should have_content(s.author.created_at.strftime '%Y-%m-%d') }}
+      end
+
     end
 
   end

@@ -8,3 +8,5 @@
       %i= story.title
       by
       = story.author.username
+      on
+      = story.created_at.strftime '%Y-%m-%d'
