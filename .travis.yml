@@ -7,7 +7,6 @@ env:
   global:
   - SECRET_TOKEN=d9ef8d2ba306ab2a3b50e7b84da83196992b3338585d1b3c57b9da53f54636e7dc3f1d92463b1d17387fed59fb5ff50af336b23a198e046cf7f5f9b7b7e6f272
   matrix:
-  - DB=mysql
   - DB=postgresql
 
 bundler_args: --without development production
