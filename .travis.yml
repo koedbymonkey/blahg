@@ -4,7 +4,12 @@ rvm:
   - 2.0.0
 
 env:
-  - DB=postgresql SECRET_TOKEN=3457f9d6b2b35dd58ab98630210674a5a0277d05c5f9dfe8d3375283f74e65dc03367fb3e32594c3bbf131c8261a553a19c34ee57fc5363f1f78853745d4bdd6
+  global:
+  - SECRET_TOKEN=d9ef8d2ba306ab2a3b50e7b84da83196992b3338585d1b3c57b9da53f54636e7dc3f1d92463b1d17387fed59fb5ff50af336b23a198e046cf7f5f9b7b7e6f272
+  matrix:
+  - DB=postgresql
+
+bundler_args: --without development production
 
 before_script:
   - curl -Lo config/database.yml http://git.io/YLiX3g

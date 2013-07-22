@@ -32,6 +32,13 @@ group :development do
   gem 'pry-debugger'
   gem 'yard'
   gem 'mailcatcher'
+
+  # guard
+  gem 'guard'
+  gem 'guard-bundler'
+  gem 'guard-rspec'
+  gem 'guard-spork'
+  gem 'rb-fsevent'
 end
 
 group :development, :test do
@@ -47,6 +54,7 @@ group :test do
   gem 'nokogiri', '~> 1.5.9'
   gem 'poltergeist'
   gem 'simplecov',          require: false
+  gem 'spork'
   gem 'syntax'
   gem 'validation_matcher'
 end
