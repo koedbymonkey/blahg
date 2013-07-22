@@ -1,1 +1,7 @@
 %h1 Blahg
+
+%h2 Stories
+
+%ul.stories
+  - for story in @stories
+    %li{ id: dom_id(story) }= story.id

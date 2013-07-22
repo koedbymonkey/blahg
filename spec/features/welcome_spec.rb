@@ -1,22 +1,39 @@
 require 'spec_helper'
 
-describe 'Welcome Page' do
+describe 'Welcome' do
 
   subject { page }
 
-  let(:story) { FactoryGirl.create :story }
+  let(:path) { root_path }
 
+  before do
+    visit path
+  end
 
-  describe 'View Stories' do
-    before do
-      visit root_path
-    end
+  describe 'permissions' do
 
-    it 'includes a story for guests' do
-      should have_content(:story)
-    end
+    it { should allow_access.to(:guest) }
 
   end
 
+  describe 'when allowed' do
+
+    include ActionController::RecordIdentifier
+
+    describe 'View Stories' do
+      let(:stories) { Story.all }
+
+      before do
+        FactoryGirl.create_list :story, 3
+        visit path
+      end
+
+      it 'includes all stories' do
+        stories.map { |s| should have_css("##{ dom_id s }") }
+      end
+
+    end
+
+  end
 
 end
