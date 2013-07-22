@@ -32,6 +32,13 @@ group :development do
   gem 'pry-debugger'
   gem 'yard'
   gem 'mailcatcher'
+
+  # guard
+  gem 'guard'
+  gem 'guard-bundler'
+  gem 'guard-spork'
+  gem 'guard-rspec'
+  gem 'rb-fsevent'
 end
 
 group :development, :test do
