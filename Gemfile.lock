@@ -328,6 +328,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.2.3)
   simplecov
+  spork
   syntax
   uglifier (>= 1.0.3)
   unicorn

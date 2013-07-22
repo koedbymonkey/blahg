@@ -36,8 +36,8 @@ group :development do
   # guard
   gem 'guard'
   gem 'guard-bundler'
-  gem 'guard-spork'
   gem 'guard-rspec'
+  gem 'guard-spork'
   gem 'rb-fsevent'
 end
 
@@ -54,6 +54,7 @@ group :test do
   gem 'nokogiri', '~> 1.5.9'
   gem 'poltergeist'
   gem 'simplecov',          require: false
+  gem 'spork'
   gem 'syntax'
   gem 'validation_matcher'
 end
