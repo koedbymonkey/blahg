@@ -32,6 +32,49 @@ describe 'Admin' do
 
   end
 
+  describe 'users' do
+
+    describe 'creating' do
+
+      let(:path) { rails_admin.new_path :user }
+
+      describe 'permissions' do
+
+        it { should_not allow_access.to(:guest) }
+        it { should_not allow_access.to(:user)  }
+        it { should     allow_access.to(:admin) }
+
+      end
+
+      context 'when allowed' do
+
+        before do
+          login_as admin
+          visit path
+        end
+
+        it 'creates a user' do
+          # invalid data
+          click_button 'Save'
+          should have_content('User failed to be created')
+
+          # valid data
+          fill_in_fields 'user', email:                 'user@testing.com',
+                                 password:              'password',
+                                 password_confirmation: 'password',
+                                 username:              'Bukah Nugget'
+          check 'Admin'
+
+          click_button 'Save'
+          should have_content('User successfully created')
+        end
+
+      end
+
+    end
+
+  end
+
   describe 'navbar' do
 
     context 'not logged in' do
