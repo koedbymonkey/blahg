@@ -7,6 +7,138 @@ describe 'Admin' do
   let(:admin) { FactoryGirl.create :admin }
   let(:user)  { FactoryGirl.create :user }
 
+  describe 'authorizations' do
+
+    let(:authorization) { FactoryGirl.create :authorization }
+
+    describe 'listing' do
+
+      let(:path) { rails_admin.index_path :authorization }
+
+      describe 'permissions' do
+
+        it { should_not allow_access.to(:guest) }
+        it { should_not allow_access.to(:user)  }
+        it { should     allow_access.to(:admin) }
+
+      end
+
+      context 'when allowed' do
+
+        before do
+          authorization
+          login_as admin
+          visit path
+        end
+
+        it { should have_css("a[href='#{ rails_admin.show_path :authorization, authorization }']")}
+        it { should have_css("a[href='#{ rails_admin.edit_path :authorization, authorization }']")}
+        it { should have_css("a[href='#{ rails_admin.delete_path :authorization, authorization }']")}
+
+      end
+
+    end
+
+    describe 'creating' do
+
+      let!(:role) { FactoryGirl.create :role }
+      let!(:user) { FactoryGirl.create :user }
+      let(:path)  { rails_admin.new_path :authorization }
+
+      describe 'permissions' do
+
+        it { should_not allow_access.to(:guest) }
+        it { should_not allow_access.to(:user)  }
+        it { should     allow_access.to(:admin) }
+
+      end
+
+      context 'when allowed' do
+
+        before do
+          login_as admin
+          visit path
+        end
+
+        it 'creates a authorization' do
+          # invalid data
+          click_button 'Save'
+          should have_content('Authorization failed to be created')
+
+          # valid data
+          select role.name,     from: 'Role'
+          select user.username, from: 'User'
+
+          click_button 'Save'
+          should have_content('Authorization successfully created')
+        end
+
+      end
+
+    end
+
+    describe 'editing' do
+
+      let!(:another_role) { FactoryGirl.create :role }
+      let(:authorization) { FactoryGirl.create :authorization }
+      let(:path)          { rails_admin.edit_path :authorization, authorization }
+
+      describe 'permissions' do
+
+        it { should_not allow_access.to(:guest) }
+        it { should_not allow_access.to(:user)  }
+        it { should     allow_access.to(:admin) }
+
+      end
+
+      context 'when allowed' do
+
+        before do
+          login_as admin
+          visit path
+        end
+
+        it 'can change the name' do
+          # invalid data
+          select '', from: 'Role'
+          select '', from: 'User'
+
+          click_button 'Save'
+          should have_content('Authorization failed to be updated')
+
+          # valid data
+          select another_role.name,           from: 'Role'
+          select authorization.user.username, from: 'User'
+
+          click_button 'Save'
+          should have_content('Authorization successfully updated')
+        end
+
+      end
+
+    end
+
+    describe 'deleting' do
+
+      let!(:authorization) { FactoryGirl.create :authorization }
+
+      before do
+        login_as admin
+        visit rails_admin.index_path(:authorization)
+      end
+
+      it 'removes the authorization with confirmation' do
+        find("a[href='#{ rails_admin.delete_path :authorization, authorization }']").click
+        should have_content('Are you sure you want to delete this authorization')
+
+        click_button "Yes, I'm sure"
+        should have_content('Authorization successfully deleted')
+      end
+
+    end
+
+  end
+
   describe 'dashboard' do
 
     let(:path) { rails_admin.dashboard_path }
@@ -154,6 +286,7 @@ describe 'Admin' do
       end
 
     end
+
 
   end
 
