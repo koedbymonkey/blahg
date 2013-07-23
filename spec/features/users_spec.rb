@@ -16,10 +16,10 @@ describe 'Users' do
       should have_content('prohibited this user from being saved')
 
       # valid data
-      fill_in_fields 'user', email:                 'user@testing.com',
-                             password:              'password',
-                             password_confirmation: 'password',
-                             username:              'Bukah Nugget'
+      fill_in_fields 'user', email:                 'moo@testing.com',
+                             password:              'password123',
+                             password_confirmation: 'password123',
+                             username:              'Bukah'
 
       click_button 'Sign up'
 

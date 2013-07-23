@@ -9,7 +9,6 @@ require File.expand_path('../boot', __FILE__)
   sprockets
 ].each { |f| require "#{ f }/railtie" }
 
-
 if defined?(Bundler)
   Bundler.require(*Rails.groups(assets: %w[ development test ]))
 end

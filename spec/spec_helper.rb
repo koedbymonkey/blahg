@@ -49,7 +49,8 @@ Spork.prefork do
     config.use_transactional_fixtures                      = false
 
     config.before :suite do
-      DatabaseCleaner.strategy = :truncation
+      %w[ commenter ].each {|n| Role.where(name: n).first_or_create }
+      DatabaseCleaner.strategy = :truncation, { except: %w[ roles ] }
     end
 
     config.before :each do
@@ -67,6 +68,10 @@ Spork.prefork do
 
     config.after :each do
       DatabaseCleaner.clean
+    end
+
+    config.after :suite do
+      Role.delete_all
     end
   end
 
